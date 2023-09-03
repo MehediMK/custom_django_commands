@@ -26,15 +26,12 @@ class Service:
             payload['post_thumbnail_url'] = data.get('thumbnail'),
             payload['status'] = data.get('status'),
             payload['category'] = data.get('category')
-            
+
             object_list.append(payload)
         return object_list
 
 
-    def bulk_insert(self, datas):
-        # You can adjust this to your preference
-        chunk_size = 10
-
+    def bulk_insert(self, datas, chunk_size:int=10):
         # Split the data into smaller chunks
         chunks = [datas[i:i + chunk_size] for i in range(0, len(datas), chunk_size)]
 
