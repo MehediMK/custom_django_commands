@@ -1,5 +1,5 @@
 from pathlib import Path
-from core.config import Config as config
+from config import Config as config
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
