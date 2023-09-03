@@ -1,0 +1,1 @@
+POST_API = 'https://jsonplaceholder.org/posts'
