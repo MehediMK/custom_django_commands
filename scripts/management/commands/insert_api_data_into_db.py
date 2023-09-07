@@ -1,5 +1,9 @@
+import datetime
+import logging
 from django.core.management import BaseCommand
 from scripts.services.service import Service
+from scripts.utils import Util
+
 
 class Command(BaseCommand):
     help = "Insert api data into db"
@@ -9,6 +13,8 @@ class Command(BaseCommand):
         parser.add_argument('--username', type=str, required=True, help='Username of the user')
 
     def handle(self, *args, **options):
-        api_type = options.get('type')
+        start_time = datetime.datetime.now()
         username = options.get('username')
-        self.service.insert_data_from_api(username, api_type)
+        self.service.insert_data_from_api(username)
+        execution_time = Util.get_execution_time(start_time)
+        logging.info(f'Script takes {execution_time} minutes.')
