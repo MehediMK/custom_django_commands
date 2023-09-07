@@ -1,22 +1,25 @@
+import logging
 import requests
 import scripts as scripts_app
 from blog import models
 
 
 class Service:
-    def insert_data_from_api(self, api_type:str='all'):
-        if api_type:
-            pass
-        url = scripts_app.POST_API
-        response = requests.get(url)
-        if response.status_code == 200:            
-            datas = response.json()
-            object_list = self.make_post_model_paylad(datas)            
-            self.bulk_insert(object_list)
+    def insert_data_from_api(self, username, api_type:str='all'):
+        try:
+            if api_type == 'all':
+                url = scripts_app.POST_API
+                response = requests.get(url)
+                if response.status_code == 200:
+                    datas = response.json()
+                    object_list = self.make_post_model_paylad(datas)            
+                    self.bulk_insert(object_list)
+        except Exception as error:
+            logging.error(f"{error}: insert_data_from_api.")
     
     def make_post_model_paylad(self, datas):
         object_list = []
-        for data in datas:                
+        for data in datas:
             payload = {}
             payload['slug'] = data.get('slug'),
             payload['url'] = data.get('url'),
