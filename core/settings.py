@@ -1,3 +1,4 @@
+import datetime
 from pathlib import Path
 from config import Config as config
 
@@ -86,6 +87,22 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Configure file system logging
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': BASE_DIR/f"logs/{datetime.date.today()}.log",
+        },
+    },
+    'root': {
+        'handlers': ['file'],
+        'level': 'DEBUG',
+    }
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
