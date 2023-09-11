@@ -115,6 +115,16 @@ USE_I18N = True
 
 USE_TZ = True
 
+# For Content Security Policy (CSP)
+CSP_DEFAULT_SRC = ("'self'",)
+
+# For HTTPOnly and Secure Cookies
+SESSION_COOKIE_HTTPONLY = True
+SESSION_COOKIE_SECURE = True
+
+# SameSite Attribute for Cookies
+SESSION_COOKIE_SAMESITE = 'Strict'  # or 'Lax'
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
